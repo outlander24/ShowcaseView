@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'showcaseview'
+
+    publishedGroupId = 'com.outlander.showcaseview'
+    libraryName = 'showcaseview'
+    artifact = 'showcaseview'
+
+    libraryDescription = 'Use this to add showcaseview to your application. For example : Showing short demo while onBoarding.'
+
+    siteUrl = 'https://github.com/OuTlAnDeR24/ShowcaseView'
+    gitUrl = 'https://github.com/OuTlAnDeR24/ShowcaseView.git'
+
+    libraryVersion = '1.1.0'
+
+    developerId = 'outlander'
+    developerName = 'Ashish Totla'
+    developerEmail = 'ashishtotla956@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -8,7 +32,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0"
+        versionName "1.1.0"
     }
     buildTypes {
         release {
@@ -23,3 +47,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

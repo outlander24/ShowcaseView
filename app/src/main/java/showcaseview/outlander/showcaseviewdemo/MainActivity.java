@@ -5,12 +5,19 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import outlander.showcaseview.ShowcaseViewBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
+    public boolean isShowcaseViewVisible = true;
+    public ShowcaseViewBuilder showcaseViewBuilder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,16 +25,61 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final TextView textView = (TextView) findViewById(R.id.text);
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                if (isShowcaseViewVisible) {
+                    showcaseViewBuilder.hide();
+                    showcaseViewBuilder.setTargetView(textView)
+                            .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
+                            .addCustomView(R.layout.description_view, Gravity.BOTTOM)
+                            .show();
+                    addCLickListeners();
+                    isShowcaseViewVisible = false;
+                } else {
+                    showcaseViewBuilder.hide();
+                    showcaseViewBuilder.setTargetView(fab)
+                            .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
+                            .addCustomView(R.layout.description_view, Gravity.TOP)
+                            .show();
+                    addCLickListeners();
+                    isShowcaseViewVisible = true;
+                }
             }
         });
 
+        showcaseViewBuilder = ShowcaseViewBuilder.init(this)
+                .setTargetView(fab)
+                .setBackgroundOverlayColor(0xcc4d4d4d)
+                .setRingColor(0xcc222222)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
+                .addCustomView(R.layout.description_view, Gravity.TOP)
+                .setCustomViewMargin(40);
 
+        showcaseViewBuilder.show();
+
+        addCLickListeners();
+
+
+    }
+
+    private void addCLickListeners() {
+        showcaseViewBuilder.setClickListenerOnView(R.id.first, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseViewBuilder.hide();
+            }
+        });
+
+        showcaseViewBuilder.setClickListenerOnView(R.id.second, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "This is second click listener", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
