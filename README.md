@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://cloud.githubusercontent.com/assets/4048813/14598878/fc7ed3ac-0571-11e6-94e4-6d98f9ceffe2.png" width="250"/>
-  <img src="https://cloud.githubusercontent.com/assets/4048813/14598877/fc513172-0571-11e6-9e6f-7f0226c2641a.png" width="250"/>
+  <img src="https://cloud.githubusercontent.com/assets/4048813/14600231/306fc39a-0579-11e6-9b0d-35c6788bb361.png" width="250"/>
   <img src="https://cloud.githubusercontent.com/assets/4048813/14598879/fca1afd0-0571-11e6-9d9a-f49fb2dd7ea1.png" width="250"/>
 </p>
 
@@ -32,6 +32,7 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
                 .setTargetView(fab)
                 .setBackgroundOverlayColor(0xdd4d4d4d)
                 .setRingColor(0xcc8e8e8e)
+                .setRingWidth(20)
                 .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
                 .addCustomView(R.layout.description_view, Gravity.TOP)
                 .addCustomView(R.layout.skip_layout)
@@ -88,6 +89,9 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
   </li>
   <li>
     <p><code>setRingColor(int color)</code>: Sets the color of the ring around the showcaseView.</p>
+  </li>
+  <li>
+    <p><code>setRingWidth(float width)</code>: Sets the width of the ring around the showcaseView. Default value is 10px</p>
   </li>
   <li>
     <p><code>setMarkerDrawable(Drawable drawable, int gravity)</code>: Sets the marker drawable if any to point the showcaseView. Also, sets a gravity for the drawable (TOP, LEFT, RIGHT, BOTTOM) around the showcasing view.</p>
