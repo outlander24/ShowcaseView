@@ -5,43 +5,22 @@
     >
 
     <TextView
-        android:id="@+id/first"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Got it"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:textSize="18sp"/>
-
-    <TextView
         android:id="@+id/second"
-        android:layout_below="@+id/first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is a sample text"
+        android:text="This is a floating button"
         android:textColor="#ffffff"
-        android:layout_marginLeft="20dp"
-        android:textSize="14sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
 
-    <TextView
-        android:id="@+id/third"
+    <Button
+        android:id="@+id/btn"
         android:layout_below="@+id/second"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:text="This is another sample text"
-        android:textColor="#ffffff"
-        android:textSize="14sp"/>
-
-    <!--<ImageButton-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentBottom="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:src="@android:drawable/ic_delete"-->
-    <!--android:background="@null"-->
-    <!--/>-->
+        android:layout_height="28dp"
+        android:background="#55558855"
+        android:text="Got it"/>
 
 </RelativeLayout>

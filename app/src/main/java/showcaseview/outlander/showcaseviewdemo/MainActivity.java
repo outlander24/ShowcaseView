@@ -2,13 +2,14 @@ package showcaseview.outlander.showcaseviewdemo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean isShowcaseViewVisible = true;
     public ShowcaseViewBuilder showcaseViewBuilder;
+
+    private FloatingActionButton fab;
+    private TextView textView;
+    private ImageView imageView;
+    private Button buttton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final TextView textView = (TextView) findViewById(R.id.text);
+        textView = (TextView) findViewById(R.id.textView);
+        imageView = (ImageView) findViewById(R.id.imgBtn);
+        buttton = (Button) findViewById(R.id.btn);
 
-        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,11 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         showcaseViewBuilder = ShowcaseViewBuilder.init(this)
                 .setTargetView(fab)
-                .setBackgroundOverlayColor(0xcc4d4d4d)
-                .setRingColor(0xcc222222)
-                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
+                .setBackgroundOverlayColor(0xdd4d4d4d)
+                .setRingColor(0xcc8e8e8e)
+                .setRingWidth(20)
+                .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
                 .addCustomView(R.layout.description_view, Gravity.TOP)
-                .setCustomViewMargin(40);
+                .addCustomView(R.layout.skip_layout)
+                .setCustomViewMargin(70);
 
         showcaseViewBuilder.show();
 
@@ -67,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addCLickListeners() {
-        showcaseViewBuilder.setClickListenerOnView(R.id.first, new View.OnClickListener() {
+        showcaseViewBuilder.setClickListenerOnView(R.id.btn, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showcaseViewBuilder.hide();

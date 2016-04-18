@@ -41,6 +41,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     private HashMap<Rect, Integer> idsRectMap = new HashMap<>();
     private HashMap<Integer, OnClickListener> idsClickListenerMap = new HashMap<>();
     private boolean mHideOnTouchOutside;
+    private float mRingWidth = 10;
 
     private Canvas tempCanvas;
     private Paint backgroundPaint, transparentPaint, ringPaint;
@@ -78,9 +79,9 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         mCenterY = xy[1] + (height / 2);
 
         if (width > height) {
-            mRadius = (width) / 2;
+            mRadius = 7 * (width) / 12;
         } else {
-            mRadius = (height) / 2;
+            mRadius = 7 * (height) / 12;
         }
     }
 
@@ -144,6 +145,11 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         return this;
     }
 
+    public ShowcaseViewBuilder setRingWidth(float ringWidth) {
+        this.mRingWidth = ringWidth;
+        return this;
+    }
+
     public ShowcaseViewBuilder setBackgroundOverlayColor(int color) {
         this.backgroundOverlayColor = color;
         return this;
@@ -153,14 +159,16 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         transparentPaint = new Paint();
         ringPaint = new Paint();
         backgroundPaint = new Paint();
-        mTargetView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                invalidate();
-                addShowcaseView();
-                mTargetView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-            }
-        });
+        if (mTargetView != null) {
+            mTargetView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    invalidate();
+                    addShowcaseView();
+                    mTargetView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+            });
+        }
         setOnTouchListener(this);
     }
 
@@ -192,26 +200,26 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
             switch (mMarkerDrawableGravity) {
                 case Gravity.LEFT:
                     mMarkerDrawable.setBounds((int) (mCenterX - mRadius - mMarkerDrawable.getMinimumWidth() - 20),
-                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight() / 2),
-                            (int) (mCenterX - mRadius - 20), (int) (mCenterY + mMarkerDrawable.getMinimumHeight() / 2));
+                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight()),
+                            (int) (mCenterX - mRadius - 20), (int) (mCenterY));
                     break;
 
                 case Gravity.TOP:
-                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth() / 2),
+                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth()),
                             (int) (mCenterY - mRadius - mMarkerDrawable.getMinimumHeight() - 20),
-                            (int) (mCenterX + mMarkerDrawable.getMinimumWidth() / 2), (int) (mCenterY - mRadius - 20));
+                            (int) (mCenterX), (int) (mCenterY - mRadius - 20));
                     break;
 
                 case Gravity.RIGHT:
                     mMarkerDrawable.setBounds((int) (mCenterX + mRadius + 20),
-                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight() / 2),
+                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight()),
                             (int) (mCenterX + mRadius + mMarkerDrawable.getMinimumWidth() + 20),
-                            (int) (mCenterY + mMarkerDrawable.getMinimumHeight() / 2));
+                            (int) (mCenterY));
                     break;
 
                 case Gravity.BOTTOM:
-                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth() / 2),
-                            (int) (mCenterY + mRadius + 20), (int) (mCenterX + mMarkerDrawable.getMinimumWidth() / 2),
+                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth()),
+                            (int) (mCenterY + mRadius + 20), (int) (mCenterX),
                             (int) (mCenterY + mRadius + mMarkerDrawable.getMinimumHeight() + 20));
                     break;
             }
@@ -226,17 +234,17 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         if (mCustomView.size() != 0) {
             for (int i = 0; i < mCustomView.size(); i++) {
                 float cy = mCustomView.get(i).getMeasuredHeight() / 2, cx = mCustomView.get(i).getMeasuredWidth() / 2;
-                float diffY, diffX;
+                float diffY, diffX, viewHeight, viewWidth;
                 float marginY, marginX;
                 switch (mCustomViewGravity.get(i)) {
                     case Gravity.LEFT:
                         diffY = mCenterY - cy;
+                        viewHeight = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredHeight();
                         mCustomView.get(i).layout(0, 0, (int) (mCenterX - 2 * mRadius - 2 * mCustomViewMargin),
-                                (int) (mCustomView.get(i).getMeasuredHeight() + 2 * diffY));
+                                (int) (mCustomView.get(i).getMeasuredHeight() - viewHeight + 2 * diffY));
                         break;
 
                     case Gravity.TOP:
-                        cy = mCustomView.get(i).getMeasuredHeight() / 2;
                         diffY = mCenterY - cy;
                         marginY = diffY - (2 * (mRadius + mCustomViewMargin));
                         mCustomView.get(i).layout(0, 0, mCustomView.get(i).getMeasuredWidth(),
@@ -245,8 +253,12 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
 
                     case Gravity.RIGHT:
                         diffY = mCenterY - cy;
-                        mCustomView.get(i).layout(0, 0, (int) (mCustomView.get(i).getMeasuredWidth() + mCenterX + 2 * mRadius + 2 * mCustomViewMargin),
-                                (int) (mCustomView.get(i).getMeasuredHeight() + 2 * diffY));
+                        viewHeight = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredHeight();
+                        diffX = cx - mCenterX;
+                        marginX = diffX - 2 * (mRadius + mCustomViewMargin);
+                        viewWidth = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredWidth();
+                        mCustomView.get(i).layout(0, 0, (int) (mCustomView.get(i).getMeasuredWidth() - 2 * marginX + viewWidth),
+                                (int) (mCustomView.get(i).getMeasuredHeight() - viewHeight + diffY));
                         break;
 
                     case Gravity.BOTTOM:
@@ -299,15 +311,18 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         tempCanvas = new Canvas(bitmap);
 
         backgroundPaint.setColor(backgroundOverlayColor);
+        backgroundPaint.setAntiAlias(true);
 
         transparentPaint.setColor(getResources().getColor(android.R.color.transparent));
         transparentPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        transparentPaint.setAntiAlias(true);
 
         ringPaint.setColor(ringColor);
         ringPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.ADD));
+        ringPaint.setAntiAlias(true);
 
         tempCanvas.drawRect(0, 0, tempCanvas.getWidth(), tempCanvas.getHeight(), backgroundPaint);
-        tempCanvas.drawCircle(mCenterX, mCenterY, mRadius + 10, ringPaint);
+        tempCanvas.drawCircle(mCenterX, mCenterY, mRadius + mRingWidth, ringPaint);
         tempCanvas.drawCircle(mCenterX, mCenterY, mRadius, transparentPaint);
 
         canvas.drawBitmap(bitmap, 0, 0, new Paint());

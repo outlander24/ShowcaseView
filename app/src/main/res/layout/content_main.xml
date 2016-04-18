@@ -13,8 +13,35 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        />
+
+    <ImageButton
+        android:id="@+id/imgBtn"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Magic Button"
+        android:layout_centerInParent="true"
+        android:background="#0088ff"
+        android:textColor="#ffffff"
+        android:padding="8dp"
+        android:layout_margin="4dp"
+        />
+
 </RelativeLayout>
