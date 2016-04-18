@@ -65,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundOverlayColor(0xdd4d4d4d)
                 .setRingColor(0xcc8e8e8e)
                 .setRingWidth(20)
-                .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
+                .setDrawableLeftMargin(16)
                 .addCustomView(R.layout.description_view, Gravity.TOP)
                 .addCustomView(R.layout.skip_layout)
                 .setCustomViewMargin(70);

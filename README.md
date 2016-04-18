@@ -17,7 +17,7 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
     <pre>
       <code>
         dependencies {
-          compile 'com.outlander.showcaseview:showcaseview:1.1.2'
+          compile 'com.outlander.showcaseview:showcaseview:1.1.3'
         }
       </code>
     </pre>
@@ -95,6 +95,12 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
   </li>
   <li>
     <p><code>setMarkerDrawable(Drawable drawable, int gravity)</code>: Sets the marker drawable if any to point the showcaseView. Also, sets a gravity for the drawable (TOP, LEFT, RIGHT, BOTTOM) around the showcasing view.</p>
+  </li>
+  <li>
+    <p><code>setDrawableLeftMargin(float margin)</code>: Sets the marker drawable left margin.</p>
+  </li>
+  <li>
+    <p><code>setDrawableTopMargin(float margin)</code>: Sets the marker drawable top margin.</p>
   </li>
   <li>
     <p><code>addCustomView(View view, int gravity)</code>: Sets the custom description view to describe the showcaseView. Also, sets a gravity for the view (TOP, LEFT, RIGHT, BOTTOM) around the showcasing view.</p>

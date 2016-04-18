@@ -42,6 +42,8 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     private HashMap<Integer, OnClickListener> idsClickListenerMap = new HashMap<>();
     private boolean mHideOnTouchOutside;
     private float mRingWidth = 10;
+    private float mMarkerDrawableLeftMargin = 0, mMarkerDrawableRightMargin = 0,
+            mMarkerDrawableTopMargin = 0, mMarkerDrawableBottomMargin = 0;
 
     private Canvas tempCanvas;
     private Paint backgroundPaint, transparentPaint, ringPaint;
@@ -93,6 +95,26 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     public ShowcaseViewBuilder setMarkerDrawable(Drawable drawable, int gravity) {
         this.mMarkerDrawable = drawable;
         this.mMarkerDrawableGravity = gravity;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setDrawableLeftMargin(float margin) {
+        this.mMarkerDrawableLeftMargin = margin;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setDrawableRightMargin(float margin) {
+        this.mMarkerDrawableRightMargin = margin;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setDrawableTopMargin(float margin) {
+        this.mMarkerDrawableTopMargin = margin;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setDrawableBottomMargin(float margin) {
+        this.mMarkerDrawableBottomMargin = margin;
         return this;
     }
 
@@ -199,28 +221,28 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         if (mMarkerDrawable != null) {
             switch (mMarkerDrawableGravity) {
                 case Gravity.LEFT:
-                    mMarkerDrawable.setBounds((int) (mCenterX - mRadius - mMarkerDrawable.getMinimumWidth() - 20),
-                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight()),
-                            (int) (mCenterX - mRadius - 20), (int) (mCenterY));
+                    mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin - mRadius - mMarkerDrawable.getMinimumWidth() - mRingWidth - 10),
+                            (int) (mCenterY + mMarkerDrawableTopMargin - mMarkerDrawable.getMinimumHeight()),
+                            (int) (mCenterX + mMarkerDrawableLeftMargin - mRadius - mRingWidth - 10), (int) (mCenterY + mMarkerDrawableTopMargin));
                     break;
 
                 case Gravity.TOP:
-                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth()),
-                            (int) (mCenterY - mRadius - mMarkerDrawable.getMinimumHeight() - 20),
-                            (int) (mCenterX), (int) (mCenterY - mRadius - 20));
+                    mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin - mMarkerDrawable.getMinimumWidth()),
+                            (int) (mCenterY + mMarkerDrawableTopMargin - mRadius - mMarkerDrawable.getMinimumHeight() - mRingWidth - 10),
+                            (int) (mCenterX + mMarkerDrawableLeftMargin), (int) (mCenterY + mMarkerDrawableTopMargin - mRadius - mRingWidth - 10));
                     break;
 
                 case Gravity.RIGHT:
-                    mMarkerDrawable.setBounds((int) (mCenterX + mRadius + 20),
-                            (int) (mCenterY - mMarkerDrawable.getMinimumHeight()),
-                            (int) (mCenterX + mRadius + mMarkerDrawable.getMinimumWidth() + 20),
-                            (int) (mCenterY));
+                    mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin + mRadius + mRingWidth + 10),
+                            (int) (mCenterY + mMarkerDrawableTopMargin - mMarkerDrawable.getMinimumHeight()),
+                            (int) (mCenterX + mMarkerDrawableLeftMargin + mRadius + mMarkerDrawable.getMinimumWidth() + mRingWidth + 10),
+                            (int) (mCenterY + mMarkerDrawableTopMargin));
                     break;
 
                 case Gravity.BOTTOM:
-                    mMarkerDrawable.setBounds((int) (mCenterX - mMarkerDrawable.getMinimumWidth()),
-                            (int) (mCenterY + mRadius + 20), (int) (mCenterX),
-                            (int) (mCenterY + mRadius + mMarkerDrawable.getMinimumHeight() + 20));
+                    mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin - mMarkerDrawable.getMinimumWidth()),
+                            (int) (mCenterY + mMarkerDrawableTopMargin + mRadius + mRingWidth + 10), (int) (mCenterX + mMarkerDrawableLeftMargin),
+                            (int) (mCenterY + mMarkerDrawableTopMargin + mRadius + mMarkerDrawable.getMinimumHeight() + mRingWidth + 10));
                     break;
             }
 
