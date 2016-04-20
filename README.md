@@ -17,7 +17,7 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
     <pre>
       <code>
         dependencies {
-          compile 'com.outlander.showcaseview:showcaseview:1.1.3'
+          compile 'com.outlander.showcaseview:showcaseview:1.2.0'
         }
       </code>
     </pre>

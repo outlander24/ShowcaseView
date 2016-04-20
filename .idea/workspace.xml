@@ -9,16 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a724a0f3-0d68-464d-9cb5-de4553a65e76" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/showcaseview_1_1_3.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/showcaseview/src/main/java/outlander/showcaseview/ShowcaseViewBuilder.java" afterPath="$PROJECT_DIR$/showcaseview/src/main/java/outlander/showcaseview/ShowcaseViewBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/showcaseview/build.gradle" afterPath="$PROJECT_DIR$/showcaseview/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/showcaseview/showcaseview.iml" afterPath="$PROJECT_DIR$/showcaseview/showcaseview.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_2_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_2_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="a724a0f3-0d68-464d-9cb5-de4553a65e76" name="Default" comment="" />
     <ignored path="ShowcaseViewDemo.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,17 +36,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+            <state vertical-scroll-proportion="3.3030303">
+              <caret line="130" column="34" selection-start-line="130" selection-start-column="34" selection-end-line="130" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1769#1919#0" expanded="true" />
                 <element signature="e#1918#1919#0" expanded="true" />
-                <element signature="e#2579#2739#0" expanded="true" />
-                <element signature="e#2738#2739#0" expanded="true" />
+                <element signature="e#2543#2703#0" expanded="true" />
+                <element signature="e#2702#2703#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62211984">
+            <state vertical-scroll-proportion="0.0">
               <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
               <folding />
             </state>
@@ -2620,11 +2611,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/image_description_view_top.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/image_description_view_bottom.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/showcaseview/src/main/java/outlander/showcaseview/ShowcaseViewBuilder.java" />
         <option value="$PROJECT_DIR$/showcaseview/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -3050,7 +3041,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18901454" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2592068" sideWeight="0.49676898" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2592068" sideWeight="0.49676898" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45892352" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3094,30 +3085,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java</url>
-          <line>89</line>
-          <properties />
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java</url>
-          <line>111</line>
-          <properties />
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java</url>
-          <line>134</line>
-          <properties />
-          <option name="timeStamp" value="49" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="50" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.outlander.showcaseview/showcaseview/1.1.3/3da8ffad295e8f17e2dedd33628d056c93de8bec/showcaseview-1.1.3-sources.jar!/outlander/showcaseview/ShowcaseViewBuilder.java</url>
           <line>182</line>
           <properties />
@@ -3154,8 +3121,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1769#1919#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3186,8 +3153,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1769#1919#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3200,8 +3167,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1769#1919#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3214,8 +3181,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1769#1919#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3264,8 +3231,8 @@
             <element signature="imports" expanded="true" />
             <element signature="e#1769#1919#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -3550,20 +3517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1769#1919#0" expanded="true" />
-            <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#2579#2739#0" expanded="true" />
-            <element signature="e#2738#2739#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/showcaseview/src/main/java/outlander/showcaseview/ShowcaseViewBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3585,9 +3538,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62211984">
+        <state vertical-scroll-proportion="0.0">
           <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/showcaseview/outlander/showcaseviewdemo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.3030303">
+          <caret line="130" column="34" selection-start-line="130" selection-start-column="34" selection-end-line="130" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1769#1919#0" expanded="true" />
+            <element signature="e#1918#1919#0" expanded="true" />
+            <element signature="e#2543#2703#0" expanded="true" />
+            <element signature="e#2702#2703#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
