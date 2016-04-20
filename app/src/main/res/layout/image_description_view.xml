@@ -9,9 +9,19 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Even an ImageView can be showcased"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Add any number of views around the showcase view to describe it."
         android:textStyle="italic"
         android:textSize="16sp"
+        android:layout_marginTop="12dp"
         android:textColor="#FFFFFF"
         />
 
@@ -21,6 +31,7 @@
         android:text="Click anywhere on the overlay to dismiss it."
         android:textStyle="bold"
         android:textSize="14sp"
+        android:layout_marginTop="20dp"
         android:textColor="#FFFFFF"
         />
 

@@ -6,18 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import outlander.showcaseview.ShowcaseViewBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
-    public boolean isShowcaseViewVisible = true;
     public ShowcaseViewBuilder showcaseViewBuilder;
 
     private FloatingActionButton fab;
@@ -118,11 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)
                 .setRingWidth(20)
-                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
-                .setDrawableLeftMargin(16)
-                .addCustomView(R.layout.button_description_view, Gravity.TOP)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.BOTTOM)
+                .setDrawableLeftMargin(20)
+                .addCustomView(R.layout.button_description_view_bottom, Gravity.BOTTOM)
                 .addCustomView(R.layout.skip_layout)
-                .setCustomViewMargin(70);
+                .addCustomView(R.layout.button_description_view_top, Gravity.TOP)
+                .setCustomViewMargin(40);
 
         showcaseViewBuilder.show();
 
@@ -142,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 .setRingWidth(15)
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
                 .setDrawableLeftMargin(16)
-                .addCustomView(R.layout.image_description_view_bottom, Gravity.BOTTOM)
-                .addCustomView(R.layout.image_description_view_top, Gravity.TOP)
+                .addCustomView(R.layout.image_description_view, Gravity.BOTTOM)
                 .setHideOnTouchOutside(true)
                 .setCustomViewMargin(30);
 

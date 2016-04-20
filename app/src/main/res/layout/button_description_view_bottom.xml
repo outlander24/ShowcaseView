@@ -26,12 +26,4 @@
         android:textColor="#FFFFFF"
         />
 
-    <ImageView
-        android:layout_below="@+id/text2"
-        android:layout_centerHorizontal="true"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/images"
-        />
-
 </RelativeLayout>
