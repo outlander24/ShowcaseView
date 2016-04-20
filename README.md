@@ -8,6 +8,8 @@
 
 This ShowcaseView library can be used to showcase any specific part of the UI or can even be used during OnBoarding of a user to give a short intro about different widgets visible on the screen. You may add any number of views (ImageView, TextView, FrameLayout, etc displaying images, videos, GIF, text etc) to describe the showcasing view.
 
+<p>Try out sample application on <a href="https://play.google.com/store/apps/details?id=showcaseview.outlander.showcaseviewdemo">Android PlayStore</a></p>
+
 # Usage
 
 <i>For a working implementation of this project see the /app folder </i>
