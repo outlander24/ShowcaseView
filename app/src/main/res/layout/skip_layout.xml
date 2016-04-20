@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     >
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_marginTop="10dp"
+    <ImageButton
+        android:id="@+id/skip_btn"
         android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:background="#550088ff"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
-        android:text="Skip"/>
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        android:src="@drawable/ic_cross"
+        />
 
 </RelativeLayout>

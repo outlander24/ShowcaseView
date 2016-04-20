@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private TextView textView;
     private ImageView imageView;
-    private Button buttton;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,86 +33,120 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         textView = (TextView) findViewById(R.id.textView);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseTextView();
+            }
+        });
+
         imageView = (ImageView) findViewById(R.id.imgBtn);
-        buttton = (Button) findViewById(R.id.btn);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseImage();
+            }
+        });
+
+        button = (Button) findViewById(R.id.magic_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseButton();
+            }
+        });
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isShowcaseViewVisible) {
-                    showcaseViewBuilder.hide();
-                    showcaseViewBuilder.setTargetView(textView)
-                            .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
-                            .addCustomView(R.layout.description_view, Gravity.BOTTOM)
-                            .show();
-                    addCLickListeners();
-                    isShowcaseViewVisible = false;
-                } else {
-                    showcaseViewBuilder.hide();
-                    showcaseViewBuilder.setTargetView(fab)
-                            .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
-                            .addCustomView(R.layout.description_view, Gravity.TOP)
-                            .show();
-                    addCLickListeners();
-                    isShowcaseViewVisible = true;
-                }
+                showcaseFab();
             }
         });
 
-        showcaseViewBuilder = ShowcaseViewBuilder.init(this)
-                .setTargetView(fab)
-                .setBackgroundOverlayColor(0xdd4d4d4d)
-                .setRingColor(0xcc8e8e8e)
-                .setRingWidth(20)
-                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
-                .setDrawableLeftMargin(16)
-                .addCustomView(R.layout.description_view, Gravity.TOP)
-                .addCustomView(R.layout.skip_layout)
-                .setCustomViewMargin(70);
+        showcaseViewBuilder = ShowcaseViewBuilder.init(this);
 
-        showcaseViewBuilder.show();
-
-        addCLickListeners();
-
+        showcaseFab();
 
     }
 
-    private void addCLickListeners() {
+    private void showcaseFab() {
+        showcaseViewBuilder.hide();
+        showcaseViewBuilder.setTargetView(fab)
+                .setBackgroundOverlayColor(0xdd70d2cd)
+                .setRingColor(0xccb9e797)
+                .setRingWidth(30)
+                .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
+                .addCustomView(R.layout.fab_description_view, Gravity.TOP)
+                .setCustomViewMargin(170);
+
+        showcaseViewBuilder.show();
+
         showcaseViewBuilder.setClickListenerOnView(R.id.btn, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showcaseViewBuilder.hide();
             }
         });
+    }
 
-        showcaseViewBuilder.setClickListenerOnView(R.id.second, new View.OnClickListener() {
+    private void showcaseTextView() {
+        showcaseViewBuilder.hide();
+        showcaseViewBuilder.setTargetView(textView)
+                .setBackgroundOverlayColor(0xdd70d2cd)
+                .setRingColor(0xccb9e797)
+                .setRingWidth(15)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
+                .setDrawableLeftMargin(16)
+                .addCustomView(R.layout.textview_description_view, Gravity.BOTTOM)
+                .addCustomView(R.layout.skip_layout)
+                .setCustomViewMargin(30);
+
+        showcaseViewBuilder.show();
+
+        showcaseViewBuilder.setClickListenerOnView(R.id.skip_btn, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "This is second click listener", Toast.LENGTH_SHORT).show();
+                showcaseViewBuilder.hide();
             }
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    private void showcaseButton() {
+        showcaseViewBuilder.hide();
+        showcaseViewBuilder.setTargetView(button)
+                .setBackgroundOverlayColor(0xee4d4d4d)
+                .setRingColor(0xcc8e8e8e)
+                .setRingWidth(20)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.TOP)
+                .setDrawableLeftMargin(16)
+                .addCustomView(R.layout.button_description_view, Gravity.TOP)
+                .addCustomView(R.layout.skip_layout)
+                .setCustomViewMargin(70);
+
+        showcaseViewBuilder.show();
+
+        showcaseViewBuilder.setClickListenerOnView(R.id.skip_btn, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showcaseViewBuilder.hide();
+            }
+        });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void showcaseImage() {
+        showcaseViewBuilder.hide();
+        showcaseViewBuilder.setTargetView(imageView)
+                .setBackgroundOverlayColor(0xee4d4d4d)
+                .setRingColor(0xcc8e8e8e)
+                .setRingWidth(15)
+                .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
+                .setDrawableLeftMargin(16)
+                .addCustomView(R.layout.image_description_view_bottom, Gravity.BOTTOM)
+                .addCustomView(R.layout.image_description_view_top, Gravity.TOP)
+                .setHideOnTouchOutside(true)
+                .setCustomViewMargin(30);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        showcaseViewBuilder.show();
     }
 }
