@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -70,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
         showcaseViewBuilder.setTargetView(fab)
                 .setBackgroundOverlayColor(0xdd70d2cd)
                 .setRingColor(0xccb9e797)
-                .setRingWidth(30)
+                .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
                 .addCustomView(R.layout.fab_description_view, Gravity.TOP)
-                .setCustomViewMargin(170);
+                .setCustomViewMargin((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics()));
 
         showcaseViewBuilder.show();
 
@@ -89,12 +90,12 @@ public class MainActivity extends AppCompatActivity {
         showcaseViewBuilder.setTargetView(textView)
                 .setBackgroundOverlayColor(0xdd70d2cd)
                 .setRingColor(0xccb9e797)
-                .setRingWidth(15)
+                .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 12, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
-                .setDrawableLeftMargin(16)
+                .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                 .addCustomView(R.layout.textview_description_view, Gravity.BOTTOM)
                 .addCustomView(R.layout.skip_layout)
-                .setCustomViewMargin(30);
+                .setCustomViewMargin((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
 
         showcaseViewBuilder.show();
 
@@ -110,13 +111,13 @@ public class MainActivity extends AppCompatActivity {
         showcaseViewBuilder.setTargetView(button)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)
-                .setRingWidth(20)
+                .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.BOTTOM)
-                .setDrawableLeftMargin(20)
+                .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                 .addCustomView(R.layout.button_description_view_bottom, Gravity.BOTTOM)
                 .addCustomView(R.layout.skip_layout)
                 .addCustomView(R.layout.button_description_view_top, Gravity.TOP)
-                .setCustomViewMargin(40);
+                .setCustomViewMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
 
         showcaseViewBuilder.show();
 
@@ -132,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
         showcaseViewBuilder.setTargetView(imageView)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)
-                .setRingWidth(15)
+                .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
-                .setDrawableLeftMargin(16)
+                .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                 .addCustomView(R.layout.image_description_view, Gravity.BOTTOM)
                 .setHideOnTouchOutside(true)
-                .setCustomViewMargin(30);
+                .setCustomViewMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
 
         showcaseViewBuilder.show();
     }

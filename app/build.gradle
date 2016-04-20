@@ -1,21 +1,31 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'MyReleaseKey'
+            keyPassword 'IAmSmartEnoughtToHideThis'
+            storeFile file('/Users/ashish/Documents/Personal/ShowcaseViewDemo/MyReleaseKeyStore.jks')
+            storePassword 'IAmSmartEnoughtToHideThis'
+        }
+    }
+
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "showcaseview.outlander.showcaseviewdemo"
         minSdkVersion 11
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 6
+        versionName "1.1"
     }
     buildTypes {
         release {
             shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            signingConfig signingConfigs.config
         }
     }
 }

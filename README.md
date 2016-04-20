@@ -32,11 +32,11 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
                 .setTargetView(fab)
                 .setBackgroundOverlayColor(0xdd4d4d4d)
                 .setRingColor(0xcc8e8e8e)
-                .setRingWidth(20)
+                .setRingWidth((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
                 .addCustomView(R.layout.description_view, Gravity.TOP)
                 .addCustomView(R.layout.skip_layout)
-                .setCustomViewMargin(70);
+                .setCustomViewMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics()));
         
         showcaseViewBuilder.show();
       </code>
@@ -73,6 +73,9 @@ This ShowcaseView library can be used to showcase any specific part of the UI or
   <li>
     <p>Call the <code>showcaseViewBuilder.show()</code> only after adding all the customViews and MarkerDrawable.</p>
   </li>
+  <li>
+      <p><code>setRingWidth(float width) and other margin setters take pixels as parameters. So make sure to send into density independent pixels (dp) value to support multiple screen sizes (See the sample code snippet above for reference)</p>
+    </li>
   <li>
     <p>Once <code>showcaseViewBuilder.hide()</code> is called, all the click listeners get <b>deregistered</b>.
     Thus, you will have to set them back if showing it again. Better to register all the click listeners in a single method which can be called when showing the showcaseView.</p>
