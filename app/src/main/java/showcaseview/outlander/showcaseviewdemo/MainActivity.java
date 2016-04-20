@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showcaseFab() {
-        showcaseViewBuilder.hide();
         showcaseViewBuilder.setTargetView(fab)
                 .setBackgroundOverlayColor(0xdd70d2cd)
                 .setRingColor(0xccb9e797)
@@ -87,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showcaseTextView() {
-        showcaseViewBuilder.hide();
         showcaseViewBuilder.setTargetView(textView)
                 .setBackgroundOverlayColor(0xdd70d2cd)
                 .setRingColor(0xccb9e797)
@@ -109,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showcaseButton() {
-        showcaseViewBuilder.hide();
         showcaseViewBuilder.setTargetView(button)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)
@@ -132,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showcaseImage() {
-        showcaseViewBuilder.hide();
         showcaseViewBuilder.setTargetView(imageView)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)

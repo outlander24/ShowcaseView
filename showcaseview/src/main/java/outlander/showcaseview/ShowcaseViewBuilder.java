@@ -182,14 +182,19 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         ringPaint = new Paint();
         backgroundPaint = new Paint();
         if (mTargetView != null) {
-            mTargetView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    invalidate();
-                    addShowcaseView();
-                    mTargetView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                }
-            });
+            if (mTargetView.getWidth() == 0 || mTargetView.getHeight() == 0) {
+                mTargetView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        invalidate();
+                        addShowcaseView();
+                        mTargetView.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    }
+                });
+            } else {
+                invalidate();
+                addShowcaseView();
+            }
         }
         setOnTouchListener(this);
     }

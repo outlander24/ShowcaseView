@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="showcaseview-1.2.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.outlander.showcaseview/showcaseview/1.2.0/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.outlander.showcaseview/showcaseview/1.2.0/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.outlander.showcaseview/showcaseview/1.2.0/40bc3f990c5a3620cc3ef3b843e604113ab434f6/showcaseview-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
