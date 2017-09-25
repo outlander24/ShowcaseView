@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ShowcaseViewDemo.iml" filepath="$PROJECT_DIR$/ShowcaseViewDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShowcaseView.iml" filepath="$PROJECT_DIR$/ShowcaseView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/showcaseview/showcaseview.iml" filepath="$PROJECT_DIR$/showcaseview/showcaseview.iml" />
     </modules>

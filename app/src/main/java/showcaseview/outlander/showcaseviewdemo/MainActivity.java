@@ -6,12 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import outlander.showcaseview.ShowcaseViewBuilder;
+
+//import outlander.showcaseview.ShowcaseViewBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -130,13 +133,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showcaseImage() {
+        View view = LayoutInflater.from(this).inflate(R.layout.image_description_view, null, false);
         showcaseViewBuilder.setTargetView(imageView)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)
                 .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
                 .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
-                .addCustomView(R.layout.image_description_view, Gravity.BOTTOM)
+                .addCustomView(view, Gravity.BOTTOM)
                 .setHideOnTouchOutside(true)
                 .setCustomViewMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources().getDisplayMetrics()));
 

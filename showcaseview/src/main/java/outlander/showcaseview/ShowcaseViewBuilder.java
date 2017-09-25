@@ -139,6 +139,42 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         return this;
     }
 
+    public ShowcaseViewBuilder addCustomView(View view, int gravity) {
+        LinearLayout linearLayout = new LinearLayout(mActivity);
+        linearLayout.addView(view);
+        linearLayout.setGravity(Gravity.CENTER);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        Rect rect = new Rect();
+        rect.set(0, 0, metrics.widthPixels, metrics.heightPixels);
+
+        int widthSpec = View.MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY);
+        int heightSpec = View.MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY);
+
+        linearLayout.measure(widthSpec, heightSpec);
+        mCustomView.add(linearLayout);
+        mCustomViewGravity.add(gravity);
+        return this;
+    }
+
+    public ShowcaseViewBuilder addCustomView(View view) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        Rect rect = new Rect();
+        rect.set(0, 0, metrics.widthPixels, metrics.heightPixels);
+
+        int widthSpec = View.MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY);
+        int heightSpec = View.MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY);
+
+        view.measure(widthSpec, heightSpec);
+        mCustomView.add(view);
+        mCustomViewGravity.add(0);
+        return this;
+    }
+
     public ShowcaseViewBuilder addCustomView(int layoutId) {
         final View view = LayoutInflater.from(mActivity).inflate(layoutId, null);
 
@@ -332,7 +368,6 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     }
 
     private void setShowcase(Canvas canvas) {
-
         calculateRadiusAndCenter();
         Bitmap bitmap = Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
         tempCanvas = new Canvas(bitmap);
@@ -381,7 +416,6 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-
         if (idsRectMap.isEmpty()) {
             for (View parentView : mCustomView) {
                 List<View> childrenViews = getAllChildren(parentView);
