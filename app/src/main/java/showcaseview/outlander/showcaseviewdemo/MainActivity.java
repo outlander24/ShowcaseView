@@ -8,13 +8,12 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import outlander.showcaseview.ShowcaseViewBuilder;
-
-//import outlander.showcaseview.ShowcaseViewBuilder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -134,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showcaseImage() {
         View view = LayoutInflater.from(this).inflate(R.layout.image_description_view, null, false);
+        view.findViewById(R.id.tv_test).startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_down));
         showcaseViewBuilder.setTargetView(imageView)
                 .setBackgroundOverlayColor(0xee4d4d4d)
                 .setRingColor(0xcc8e8e8e)

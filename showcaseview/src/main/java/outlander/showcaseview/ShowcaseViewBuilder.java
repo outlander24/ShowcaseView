@@ -18,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -335,7 +337,6 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
                     default:
                         mCustomView.get(i).layout(0, 0, mCustomView.get(i).getMeasuredWidth(), mCustomView.get(i).getMeasuredHeight());
                 }
-
                 mCustomView.get(i).draw(canvas);
             }
         } else {
@@ -343,8 +344,11 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         }
     }
 
-    private ArrayList<View> getAllChildren(View v) {
+//    public void setAnimationOnView(int layoutId, Animation animation) {
+//        List<View> childViews = getAllChildren()
+//    }
 
+    private ArrayList<View> getAllChildren(View v) {
         if (!(v instanceof ViewGroup)) {
             ArrayList<View> viewArrayList = new ArrayList<>();
             viewArrayList.add(v);
@@ -355,9 +359,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
 
         ViewGroup viewGroup = (ViewGroup) v;
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
-
             View child = viewGroup.getChildAt(i);
-
             ArrayList<View> viewArrayList = new ArrayList<>();
             viewArrayList.add(v);
             viewArrayList.addAll(getAllChildren(child));

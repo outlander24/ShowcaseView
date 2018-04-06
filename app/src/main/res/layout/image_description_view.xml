@@ -16,6 +16,7 @@
         />
 
     <TextView
+        android:id="@+id/tv_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add any number of views around the showcase view to describe it."
