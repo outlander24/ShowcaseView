@@ -12,36 +12,57 @@
     tools:context="showcaseview.outlander.showcaseviewdemo.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Left Title"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        />
+    <outlander.showcaseview.RippleBackground
+        android:id="@+id/tv_highlighter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rb_duration="1500"
+        app:rb_radius="10dp"
+        app:rb_rippleAmount="2"
+        app:rb_scale="5">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            android:text="Left Title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </outlander.showcaseview.RippleBackground>
 
     <ImageButton
         android:id="@+id/imgBtn"
-        android:layout_below="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_highlighter"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@null"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
-        />
+        android:src="@drawable/ic_launcher" />
 
-    <Button
-        android:id="@+id/magic_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Magic Button"
-        android:layout_centerInParent="true"
-        android:background="#0088ff"
-        android:textColor="#ffffff"
-        android:padding="8dp"
-        android:layout_margin="4dp"
-        />
+    <outlander.showcaseview.RippleBackground
+        android:id="@+id/btn_highlighter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:rb_duration="1500"
+        app:rb_radius="20dp"
+        app:rb_rippleAmount="2"
+        app:rb_scale="5">
+
+        <Button
+            android:id="@+id/magic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="4dp"
+            android:background="#0088ff"
+            android:padding="8dp"
+            android:text="Magic Button"
+            android:textColor="#ffffff" />
+
+    </outlander.showcaseview.RippleBackground>
 
 </RelativeLayout>

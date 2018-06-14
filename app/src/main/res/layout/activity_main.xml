@@ -23,12 +23,25 @@
 
     <include layout="@layout/content_main" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <outlander.showcaseview.RippleBackground
+        android:id="@+id/fab_highlighter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:rb_duration="1000"
+        app:rb_radius="10dp"
+        app:rb_rippleAmount="2"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email" />
+        app:rb_scale="5">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@android:drawable/ic_dialog_email"
+            />
+
+    </outlander.showcaseview.RippleBackground>
 
 </android.support.design.widget.CoordinatorLayout>

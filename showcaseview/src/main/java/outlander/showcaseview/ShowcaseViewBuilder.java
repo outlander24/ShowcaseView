@@ -39,18 +39,18 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     private Drawable mMarkerDrawable;
     private int mMarkerDrawableGravity;
     private int ringColor, backgroundOverlayColor;
-    private int mCustomViewMargin;
+    private int mCustomViewMargin, mShape = SHAPE_CIRCLE;
     private HashMap<Rect, Integer> idsRectMap = new HashMap<>();
     private HashMap<Integer, OnClickListener> idsClickListenerMap = new HashMap<>();
     private boolean mHideOnTouchOutside;
-    private float mRingWidth = 10;
+    private float mRingWidth = 10, mShowcaseMargin = 12;
     private float mMarkerDrawableLeftMargin = 0, mMarkerDrawableRightMargin = 0,
             mMarkerDrawableTopMargin = 0, mMarkerDrawableBottomMargin = 0;
-
     private Canvas tempCanvas;
     private Paint backgroundPaint, transparentPaint, ringPaint;
-
     private static final String TAG = "SHOWCASE_VIEW";
+    public static final int SHAPE_CIRCLE = 0;   //Default Shape
+    public static final int SHAPE_SKEW = 1;
 
     private ShowcaseViewBuilder(Context context) {
         super(context);
@@ -117,6 +117,11 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
 
     public ShowcaseViewBuilder setDrawableBottomMargin(float margin) {
         this.mMarkerDrawableBottomMargin = margin;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setShape(int shape) {
+        this.mShape = shape;
         return this;
     }
 
@@ -207,6 +212,11 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
 
     public ShowcaseViewBuilder setRingWidth(float ringWidth) {
         this.mRingWidth = ringWidth;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setShowcaseMargin(float showcaseMargin) {
+        this.mShowcaseMargin = showcaseMargin;
         return this;
     }
 
@@ -344,10 +354,6 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         }
     }
 
-//    public void setAnimationOnView(int layoutId, Animation animation) {
-//        List<View> childViews = getAllChildren()
-//    }
-
     private ArrayList<View> getAllChildren(View v) {
         if (!(v instanceof ViewGroup)) {
             ArrayList<View> viewArrayList = new ArrayList<>();
@@ -386,8 +392,27 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         ringPaint.setAntiAlias(true);
 
         tempCanvas.drawRect(0, 0, tempCanvas.getWidth(), tempCanvas.getHeight(), backgroundPaint);
-        tempCanvas.drawCircle(mCenterX, mCenterY, mRadius + mRingWidth, ringPaint);
-        tempCanvas.drawCircle(mCenterX, mCenterY, mRadius, transparentPaint);
+        if (mShape == SHAPE_SKEW) {
+            Rect r = new Rect();
+            Rect ring = new Rect();
+            mTargetView.getGlobalVisibleRect(r);
+            mTargetView.getGlobalVisibleRect(ring);
+            //Showcase rect
+            r.top -= mShowcaseMargin;
+            r.left -= mShowcaseMargin;
+            r.right += mShowcaseMargin;
+            r.bottom += mShowcaseMargin;
+            //Showcase ring rect
+            ring.top -= mShowcaseMargin + mRingWidth;
+            ring.left -= mShowcaseMargin + mRingWidth;
+            ring.right += mShowcaseMargin + mRingWidth;
+            ring.bottom += mShowcaseMargin + mRingWidth;
+            tempCanvas.drawRect(ring, ringPaint);
+            tempCanvas.drawRect(r, transparentPaint);
+        } else {
+            tempCanvas.drawCircle(mCenterX, mCenterY, mRadius + mRingWidth, ringPaint);
+            tempCanvas.drawCircle(mCenterX, mCenterY, mRadius, transparentPaint);
+        }
 
         canvas.drawBitmap(bitmap, 0, 0, new Paint());
     }
