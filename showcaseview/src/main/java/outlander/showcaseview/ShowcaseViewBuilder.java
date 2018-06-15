@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -18,8 +19,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ import java.util.List;
 /**
  * Created by aashish totla.
  */
-public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
+public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
 
     private Activity mActivity;
     private View mTargetView;
@@ -39,7 +38,8 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     private Drawable mMarkerDrawable;
     private int mMarkerDrawableGravity;
     private int ringColor, backgroundOverlayColor;
-    private int mCustomViewMargin, mShape = SHAPE_CIRCLE;
+    private int mCustomViewMargin, mShape = SHAPE_CIRCLE, mBgOverlayShape = FULL_SCREEN;
+    private int mRoundRectCorner;
     private HashMap<Rect, Integer> idsRectMap = new HashMap<>();
     private HashMap<Integer, OnClickListener> idsClickListenerMap = new HashMap<>();
     private boolean mHideOnTouchOutside;
@@ -49,8 +49,17 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
     private Canvas tempCanvas;
     private Paint backgroundPaint, transparentPaint, ringPaint;
     private static final String TAG = "SHOWCASE_VIEW";
+    //Showcase Shapes constants
     public static final int SHAPE_CIRCLE = 0;   //Default Shape
     public static final int SHAPE_SKEW = 1;
+    //Bg Overlay Shapes constants
+    public static final int FULL_SCREEN = 2;   //Default Shape
+    public static final int ROUND_RECT = 3;
+    //Round rect corner direction constants
+    public static final int BOTTOM_LEFT = 4;
+    public static final int BOTTOM_RIGHT = 5;
+    public static final int TOP_LEFT = 6;
+    public static final int TOP_RIGHT = 7;
 
     private ShowcaseViewBuilder(Context context) {
         super(context);
@@ -120,8 +129,18 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         return this;
     }
 
-    public ShowcaseViewBuilder setShape(int shape) {
+    public ShowcaseViewBuilder setShowcaseShape(int shape) {
         this.mShape = shape;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setBgOverlayShape(int bgOverlayShape) {
+        this.mBgOverlayShape = bgOverlayShape;
+        return this;
+    }
+
+    public ShowcaseViewBuilder setRoundRectCornerDirection(int roundRectCornerDirection) {
+        this.mRoundRectCorner = roundRectCornerDirection;
         return this;
     }
 
@@ -391,7 +410,38 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
         ringPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.ADD));
         ringPaint.setAntiAlias(true);
 
-        tempCanvas.drawRect(0, 0, tempCanvas.getWidth(), tempCanvas.getHeight(), backgroundPaint);
+        if (mBgOverlayShape == ROUND_RECT) {
+            RectF oval = new RectF();
+            switch (mRoundRectCorner) {
+                case BOTTOM_LEFT:
+                    oval.set(-100, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    tempCanvas.drawArc(oval, 90F, 90F, true, backgroundPaint);
+                    break;
+
+                case BOTTOM_RIGHT:
+                    oval.set(-tempCanvas.getWidth() - 100, -tempCanvas.getHeight(), tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    tempCanvas.drawArc(oval, 360F, 90F, true, backgroundPaint);
+                    break;
+
+                case TOP_LEFT:
+                    oval.set(-100, 0, 2 * tempCanvas.getWidth() + 100, 2 * tempCanvas.getHeight());
+                    tempCanvas.drawArc(oval, 180F, 90F, true, backgroundPaint);
+                    break;
+
+                case TOP_RIGHT:
+                    oval.set(-tempCanvas.getWidth() - 100, 0, tempCanvas.getWidth() + 100, 2 * tempCanvas.getHeight());
+                    tempCanvas.drawArc(oval, 270F, 90F, true, backgroundPaint);
+                    break;
+
+                default:
+                    oval.set(-100, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    tempCanvas.drawArc(oval, 90F, 90F, true, backgroundPaint);
+                    break;
+            }
+        } else {
+            tempCanvas.drawRect(0, 0, tempCanvas.getWidth(), tempCanvas.getHeight(), backgroundPaint);
+        }
+
         if (mShape == SHAPE_SKEW) {
             Rect r = new Rect();
             Rect ring = new Rect();
@@ -463,7 +513,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener{
             Object[] keys = idsRectMap.keySet().toArray();
             for (int i = 0; i < idsRectMap.size(); i++) {
                 Rect r = (Rect) keys[i];
-                if (r.contains((int)X, (int)Y)) {
+                if (r.contains((int) X, (int) Y)) {
                     int id = idsRectMap.get(r);
                     if (idsClickListenerMap.get(id) != null) {
                         idsClickListenerMap.get(id).onClick(v);
