@@ -415,8 +415,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         if (mCustomView.size() != 0) {
             for (int i = 0; i < mCustomView.size(); i++) {
                 float cy = mCustomView.get(i).getMeasuredHeight() / 2, cx = mCustomView.get(i).getMeasuredWidth() / 2;
-                float diffY, diffX, viewHeight, viewWidth;
-                float marginY, marginX;
+                float diffY, diffX;
                 float marginTop = mCustomViewTopMargins.get(i);
                 float marginLeft = mCustomViewLeftMargins.get(i);
                 float marginRight = mCustomViewRightMargins.get(i);
