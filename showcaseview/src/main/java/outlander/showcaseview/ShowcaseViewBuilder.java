@@ -33,6 +33,10 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
     private Activity mActivity;
     private View mTargetView;
     private List<View> mCustomView = new ArrayList<>();
+    private List<Float> mCustomViewLeftMargins = new ArrayList<>();
+    private List<Float> mCustomViewTopMargins = new ArrayList<>();
+    private List<Float> mCustomViewRightMargins = new ArrayList<>();
+    private List<Float> mCustomViewBottomMargins = new ArrayList<>();
     private List<Integer> mCustomViewGravity = new ArrayList<>();
     private float mCenterX, mCenterY, mRadius;
     private Drawable mMarkerDrawable;
@@ -43,11 +47,12 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
     private HashMap<Rect, Integer> idsRectMap = new HashMap<>();
     private HashMap<Integer, OnClickListener> idsClickListenerMap = new HashMap<>();
     private boolean mHideOnTouchOutside;
-    private float mRingWidth = 10, mShowcaseMargin = 12;
+    private float mRingWidth = 10, mShowcaseMargin = 12, mRoundRectOffset = 170;
     private float mMarkerDrawableLeftMargin = 0, mMarkerDrawableRightMargin = 0,
             mMarkerDrawableTopMargin = 0, mMarkerDrawableBottomMargin = 0;
     private Canvas tempCanvas;
     private Paint backgroundPaint, transparentPaint, ringPaint;
+    private Rect mTargetViewGlobalRect;
     private static final String TAG = "SHOWCASE_VIEW";
     //Showcase Shapes constants
     public static final int SHAPE_CIRCLE = 0;   //Default Shape
@@ -114,6 +119,11 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         return this;
     }
 
+    public ShowcaseViewBuilder setRoundRectOffset(float roundRectOffset) {
+        this.mRoundRectOffset = roundRectOffset;
+        return this;
+    }
+
     public ShowcaseViewBuilder setDrawableRightMargin(float margin) {
         this.mMarkerDrawableRightMargin = margin;
         return this;
@@ -162,6 +172,10 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         linearLayout.measure(widthSpec, heightSpec);
         mCustomView.add(linearLayout);
         mCustomViewGravity.add(gravity);
+        mCustomViewLeftMargins.add(0f);
+        mCustomViewTopMargins.add(0f);
+        mCustomViewRightMargins.add(0f);
+        mCustomViewBottomMargins.add(0f);
         return this;
     }
 
@@ -182,6 +196,59 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         linearLayout.measure(widthSpec, heightSpec);
         mCustomView.add(linearLayout);
         mCustomViewGravity.add(gravity);
+        mCustomViewLeftMargins.add(0f);
+        mCustomViewTopMargins.add(0f);
+        mCustomViewRightMargins.add(0f);
+        mCustomViewBottomMargins.add(0f);
+        return this;
+    }
+
+    public ShowcaseViewBuilder addCustomView(int layoutId, int gravity, float leftMargin, float topMargin, float rightMargin, float bottomMargin) {
+        View view = LayoutInflater.from(mActivity).inflate(layoutId, null);
+        LinearLayout linearLayout = new LinearLayout(mActivity);
+        linearLayout.addView(view);
+        linearLayout.setGravity(Gravity.CENTER);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        Rect rect = new Rect();
+        rect.set(0, 0, metrics.widthPixels, metrics.heightPixels);
+
+        int widthSpec = View.MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY);
+        int heightSpec = View.MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY);
+
+        linearLayout.measure(widthSpec, heightSpec);
+        mCustomView.add(linearLayout);
+        mCustomViewGravity.add(gravity);
+        mCustomViewLeftMargins.add(leftMargin);
+        mCustomViewTopMargins.add(topMargin);
+        mCustomViewRightMargins.add(rightMargin);
+        mCustomViewBottomMargins.add(bottomMargin);
+        return this;
+    }
+
+    public ShowcaseViewBuilder addCustomView(View view, int gravity, float leftMargin, float topMargin, float rightMargin, float bottomMargin) {
+        LinearLayout linearLayout = new LinearLayout(mActivity);
+        linearLayout.addView(view);
+        linearLayout.setGravity(Gravity.CENTER);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        mActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        Rect rect = new Rect();
+        rect.set(0, 0, metrics.widthPixels, metrics.heightPixels);
+
+        int widthSpec = View.MeasureSpec.makeMeasureSpec(rect.width(), MeasureSpec.EXACTLY);
+        int heightSpec = View.MeasureSpec.makeMeasureSpec(rect.height(), MeasureSpec.EXACTLY);
+
+        linearLayout.measure(widthSpec, heightSpec);
+        mCustomView.add(linearLayout);
+        mCustomViewGravity.add(gravity);
+        mCustomViewLeftMargins.add(leftMargin);
+        mCustomViewTopMargins.add(topMargin);
+        mCustomViewRightMargins.add(rightMargin);
+        mCustomViewBottomMargins.add(bottomMargin);
         return this;
     }
 
@@ -198,6 +265,10 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         view.measure(widthSpec, heightSpec);
         mCustomView.add(view);
         mCustomViewGravity.add(0);
+        mCustomViewLeftMargins.add(0f);
+        mCustomViewTopMargins.add(0f);
+        mCustomViewRightMargins.add(0f);
+        mCustomViewBottomMargins.add(0f);
         return this;
     }
 
@@ -216,9 +287,19 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         view.measure(widthSpec, heightSpec);
         mCustomView.add(view);
         mCustomViewGravity.add(0);
+        mCustomViewLeftMargins.add(0f);
+        mCustomViewTopMargins.add(0f);
+        mCustomViewRightMargins.add(0f);
+        mCustomViewBottomMargins.add(0f);
         return this;
     }
 
+    /**
+     * Deprecated. Use @addCustomView(int layoutId, int gravity, int leftMargin, int topMargin, int rightMargin, int bottomMargin) instead
+     *
+     * @param margin
+     * @return
+     */
     public ShowcaseViewBuilder setCustomViewMargin(int margin) {
         this.mCustomViewMargin = margin;
         return this;
@@ -273,6 +354,10 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
     public void hide() {
         mCustomView.clear();
         mCustomViewGravity.clear();
+        mCustomViewLeftMargins.clear();
+        mCustomViewRightMargins.clear();
+        mCustomViewTopMargins.clear();
+        mCustomViewBottomMargins.clear();
         idsClickListenerMap.clear();
         idsRectMap.clear();
         mHideOnTouchOutside = false;
@@ -293,6 +378,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
         if (mMarkerDrawable != null) {
             switch (mMarkerDrawableGravity) {
                 case Gravity.LEFT:
+                case Gravity.START:
                     mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin - mRadius - mMarkerDrawable.getMinimumWidth() - mRingWidth - 10),
                             (int) (mCenterY + mMarkerDrawableTopMargin - mMarkerDrawable.getMinimumHeight()),
                             (int) (mCenterX + mMarkerDrawableLeftMargin - mRadius - mRingWidth - 10), (int) (mCenterY + mMarkerDrawableTopMargin));
@@ -305,6 +391,7 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
                     break;
 
                 case Gravity.RIGHT:
+                case Gravity.END:
                     mMarkerDrawable.setBounds((int) (mCenterX + mMarkerDrawableLeftMargin + mRadius + mRingWidth + 10),
                             (int) (mCenterY + mMarkerDrawableTopMargin - mMarkerDrawable.getMinimumHeight()),
                             (int) (mCenterX + mMarkerDrawableLeftMargin + mRadius + mMarkerDrawable.getMinimumWidth() + mRingWidth + 10),
@@ -330,37 +417,44 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
                 float cy = mCustomView.get(i).getMeasuredHeight() / 2, cx = mCustomView.get(i).getMeasuredWidth() / 2;
                 float diffY, diffX, viewHeight, viewWidth;
                 float marginY, marginX;
+                float marginTop = mCustomViewTopMargins.get(i);
+                float marginLeft = mCustomViewLeftMargins.get(i);
+                float marginRight = mCustomViewRightMargins.get(i);
+                float marginBottom = mCustomViewBottomMargins.get(i);
+                mTargetViewGlobalRect = new Rect();
+                mTargetView.getGlobalVisibleRect(mTargetViewGlobalRect);
+                View view = mCustomView.get(i);
                 switch (mCustomViewGravity.get(i)) {
+                    case Gravity.START:
                     case Gravity.LEFT:
                         diffY = mCenterY - cy;
-                        viewHeight = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredHeight();
-                        mCustomView.get(i).layout(0, 0, (int) (mCenterX - 2 * mRadius - 2 * mCustomViewMargin),
-                                (int) (mCustomView.get(i).getMeasuredHeight() - viewHeight + 2 * diffY));
+                        diffX = mCenterX - cx;
+                        if (diffX < 0) {
+                            view.layout(0, 0, (int) (mCenterX - view.getMeasuredWidth() - 2 * marginRight),
+                                    (int) (mCustomView.get(i).getMeasuredHeight() + 2 * (diffY + marginTop)));
+                        } else {
+                            view.layout((int) diffX, 0, (int) (view.getMeasuredWidth() - diffX - 2 * marginRight),
+                                    (int) (mCustomView.get(i).getMeasuredHeight() + 2 * (diffY + marginTop)));
+                        }
                         break;
 
                     case Gravity.TOP:
-                        diffY = mCenterY - cy;
-                        marginY = diffY - (2 * (mRadius + mCustomViewMargin));
-                        mCustomView.get(i).layout(0, 0, mCustomView.get(i).getMeasuredWidth(),
-                                (int) (mCustomView.get(i).getMeasuredHeight() + 2 * marginY));
+                        diffY = mCenterY - cy - 2 * mTargetView.getMeasuredHeight();
+                        view.layout((int) (-marginLeft), 0, (int) (view.getMeasuredWidth() + marginLeft),
+                                (int) (mCustomView.get(i).getMeasuredHeight() + 2 * (diffY + marginTop)));
                         break;
 
+                    case Gravity.END:
                     case Gravity.RIGHT:
                         diffY = mCenterY - cy;
-                        viewHeight = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredHeight();
-                        diffX = cx - mCenterX;
-                        marginX = diffX - 2 * (mRadius + mCustomViewMargin);
-                        viewWidth = ((ViewGroup) mCustomView.get(i)).getChildAt(0).getMeasuredWidth();
-                        mCustomView.get(i).layout(0, 0, (int) (mCustomView.get(i).getMeasuredWidth() - 2 * marginX + viewWidth),
-                                (int) (mCustomView.get(i).getMeasuredHeight() - viewHeight + diffY));
+                        view.layout(-2 * mTargetViewGlobalRect.right, 0,
+                                (int) (view.getMeasuredWidth() + 4 * marginLeft), (int) (mCustomView.get(i).getMeasuredHeight() + 2 * (diffY + marginTop)));
                         break;
 
                     case Gravity.BOTTOM:
-                        cy = mCustomView.get(i).getMeasuredHeight() / 2;
-                        diffY = cy - mCenterY;
-                        marginY = diffY - 2 * (mRadius + mCustomViewMargin);
-                        mCustomView.get(i).layout(0, 0, mCustomView.get(i).getMeasuredWidth(),
-                                (int) (mCustomView.get(i).getMeasuredHeight() - 2 * marginY));
+                        diffY = mCenterY - cy + 2 * mTargetView.getMeasuredHeight();
+                        view.layout((int) (-marginLeft), 0, (int) (view.getMeasuredWidth() + marginLeft),
+                                (int) (mCustomView.get(i).getMeasuredHeight() + 2 * (diffY + marginTop)));
                         break;
 
                     default:
@@ -414,27 +508,27 @@ public class ShowcaseViewBuilder extends View implements View.OnTouchListener {
             RectF oval = new RectF();
             switch (mRoundRectCorner) {
                 case BOTTOM_LEFT:
-                    oval.set(-100, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    oval.set(-mRoundRectOffset, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + mRoundRectOffset, tempCanvas.getHeight());
                     tempCanvas.drawArc(oval, 90F, 90F, true, backgroundPaint);
                     break;
 
                 case BOTTOM_RIGHT:
-                    oval.set(-tempCanvas.getWidth() - 100, -tempCanvas.getHeight(), tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    oval.set(-tempCanvas.getWidth() - mRoundRectOffset, -tempCanvas.getHeight(), tempCanvas.getWidth() + mRoundRectOffset, tempCanvas.getHeight());
                     tempCanvas.drawArc(oval, 360F, 90F, true, backgroundPaint);
                     break;
 
                 case TOP_LEFT:
-                    oval.set(-100, 0, 2 * tempCanvas.getWidth() + 100, 2 * tempCanvas.getHeight());
+                    oval.set(-mRoundRectOffset, 0, 2 * tempCanvas.getWidth() + mRoundRectOffset, 2 * tempCanvas.getHeight());
                     tempCanvas.drawArc(oval, 180F, 90F, true, backgroundPaint);
                     break;
 
                 case TOP_RIGHT:
-                    oval.set(-tempCanvas.getWidth() - 100, 0, tempCanvas.getWidth() + 100, 2 * tempCanvas.getHeight());
+                    oval.set(-tempCanvas.getWidth() - mRoundRectOffset, 0, tempCanvas.getWidth() + mRoundRectOffset, 2 * tempCanvas.getHeight());
                     tempCanvas.drawArc(oval, 270F, 90F, true, backgroundPaint);
                     break;
 
                 default:
-                    oval.set(-100, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + 100, tempCanvas.getHeight());
+                    oval.set(-mRoundRectOffset, -tempCanvas.getHeight(), 2 * tempCanvas.getWidth() + mRoundRectOffset, tempCanvas.getHeight());
                     tempCanvas.drawArc(oval, 90F, 90F, true, backgroundPaint);
                     break;
             }

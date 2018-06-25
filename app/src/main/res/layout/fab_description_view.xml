@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     >
 
     <TextView
@@ -10,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is a floating button"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/holo_blue_bright"
         android:textSize="18sp"
         android:textStyle="bold"
         />
@@ -21,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click on the button below to dismiss this overlay\nThen, click on any widget to showcase it."
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/holo_blue_bright"
         android:textSize="14sp"
         />
 
@@ -31,7 +30,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:background="@android:color/white"
+        android:background="@android:color/holo_blue_bright"
         android:text="Got it"/>
 
 </RelativeLayout>

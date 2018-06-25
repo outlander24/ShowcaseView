@@ -83,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
             showcaseViewBuilder.setTargetView(fab)
                     .setBackgroundOverlayColor(0xcc000000)
                     .setBgOverlayShape(ShowcaseViewBuilder.ROUND_RECT)
-                    .setRoundRectCornerDirection(ShowcaseViewBuilder.BOTTOM_LEFT)
+                    .setRoundRectCornerDirection(ShowcaseViewBuilder.TOP_LEFT)
+                    .setRoundRectOffset(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, getResources().getDisplayMetrics()))
                     .setRingColor(0xcc8e8e8e)
                     .setShowcaseShape(ShowcaseViewBuilder.SHAPE_CIRCLE)
                     .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
                     .setMarkerDrawable(getResources().getDrawable(R.drawable.arrow_up), Gravity.LEFT)
-                    .addCustomView(R.layout.fab_description_view, Gravity.TOP)
-                    .setCustomViewMargin((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics()));
+                    .addCustomView(R.layout.fab_description_view, Gravity.LEFT, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -228, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -80, getResources().getDisplayMetrics()) ,0);
+//                    .addCustomView(R.layout.fab_description_view, Gravity.CENTER);
 
             showcaseViewBuilder.show();
 
@@ -107,15 +108,16 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundOverlayColor(0xcc000000)
                 .setBgOverlayShape(ShowcaseViewBuilder.ROUND_RECT)
                 .setRoundRectCornerDirection(ShowcaseViewBuilder.BOTTOM_RIGHT)
+                .setRoundRectOffset(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 170, getResources().getDisplayMetrics()))
                 .setRingColor(0xccb9e797)
                 .setShowcaseShape(ShowcaseViewBuilder.SHAPE_SKEW)
+                .setHideOnTouchOutside(true)
                 .setRingWidth(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 6, getResources().getDisplayMetrics()))
                 .setShowcaseMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_down_float), Gravity.BOTTOM)
                 .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
-                .addCustomView(R.layout.textview_description_view, Gravity.BOTTOM)
-                .addCustomView(R.layout.skip_layout)
-                .setCustomViewMargin((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()));
+                .addCustomView(R.layout.textview_description_view, Gravity.BOTTOM, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()) ,0)
+                .addCustomView(R.layout.skip_layout);
 
         showcaseViewBuilder.show();
 
@@ -125,11 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 showcaseViewBuilder.hide();
             }
         });
-//        if (!tvHighlighter.isRippleAnimationRunning()) {
-//            tvHighlighter.startRippleAnimation();
-//        } else {
-//            tvHighlighter.stopRippleAnimation();
-//        }
     }
 
     private void showcaseButton() {
@@ -142,9 +139,9 @@ public class MainActivity extends AppCompatActivity {
                 .setShowcaseMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources().getDisplayMetrics()))
                 .setMarkerDrawable(getResources().getDrawable(android.R.drawable.arrow_up_float), Gravity.BOTTOM)
                 .setDrawableLeftMargin(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()))
-                .addCustomView(R.layout.button_description_view_bottom, Gravity.BOTTOM)
+                .addCustomView(R.layout.button_description_view_bottom, Gravity.BOTTOM, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()) ,0)
                 .addCustomView(R.layout.skip_layout)
-                .addCustomView(R.layout.button_description_view_top, Gravity.TOP)
+                .addCustomView(R.layout.button_description_view_top, Gravity.TOP, TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, -30, getResources().getDisplayMetrics()), TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 0, getResources().getDisplayMetrics()) ,0)
                 .setCustomViewMargin((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
 
         showcaseViewBuilder.show();
